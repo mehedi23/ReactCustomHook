@@ -1,30 +1,12 @@
-import React , {useState} from "react"
+import React from "react"
 import './App.css';
+import useFormCustomHook from './useForm-hook';
+
 
 function App() {
-  const [ first , setFirst ] = useState('');
-  const [ second , setSecond ] = useState('');
-  const [ third , setThird ] = useState('');
 
-  const first_name = (e) => {
-    setFirst(e.target.value)
-  }
+  const customHook = useFormCustomHook();
 
-  const second_name = (e) => {
-    setSecond(e.target.value)
-  }
-
-  const third_name = (e) => {
-    setThird(e.target.value)
-  }
-
-  const outPut = e => {
-    const form_val = [ first , second , third ];
-    console.log(form_val)
-    setFirst('')
-    setSecond('')
-    setThird('')
-  }
 
   return (
       <div className="App">
@@ -34,28 +16,28 @@ function App() {
               Form validation
           </h1>
 
-          <input 
-            value ={first}
-            onChange={first_name}
+          <input
+            value ={customHook.formInfo.firstName}
+            onChange={customHook.inputChangeHandler}
             name="first name" 
             placeholder="Your First Name"
           />
 
-          <input 
-            value={second}
-            onChange={second_name}
+          <input
+            value={customHook.formInfo.secondName}
+            onChange={customHook.inputChangeHandler}
             name="second name" 
             placeholder="Your Second Name"
           />
 
-          <input 
-            value={third}
-            onChange={third_name}
+          <input
+            value={customHook.formInfo.email}
+            onChange={customHook.inputChangeHandler}
             name="third name" 
             placeholder="Your Third Name"
           />
 
-          <button onClick={outPut}> Submit </button>
+          <button onClick={customHook.outPut} > Submit </button>
 
       </div>
   );
